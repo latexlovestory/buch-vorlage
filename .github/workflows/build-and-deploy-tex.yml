@@ -31,7 +31,7 @@ jobs:
           ls -la
           exit 1
         fi
-        cp "$pdf" output/
+        cp "$pdf" output/Buch.pdf
 
     - name: Upload PDF as artifact (for easy testing)
       uses: actions/upload-artifact@v4
