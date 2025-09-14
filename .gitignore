@@ -1,0 +1,37 @@
+# MacOS
+.DS_Store
+
+# LaTeX Ausgabe-Dateien
+*.pdf
+
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+
+# ==============================
+#  Web-Artefakte (htlatex/Make4ht)
+# ==============================
+# HTML/CSS/JS, Cover-Bilder, Meta-Daten
+*.html
+*.css
+*.js
+cover.*
+
+# LaTeX-Zwischen­dateien
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.idx
+*.ilg
+*.ind
+*.lof
+*.lot
+*.out
+*.toc
+*.tmp
+
+# epub temporäre Dateien
+temp/
+# epub Dateien
+*.epub

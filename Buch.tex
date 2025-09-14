@@ -1,0 +1,78 @@
+%%Vorlage "Buch", v1.05 %%
+
+\documentclass[a5paper 	%Papierformat
+,DIV=13		%Einstellungen für den Satzspiegel
+,twoside		%zweiseitiger Satzspiegel; bei der
+						%book-Dokumentklasse automatisch
+						%so eingestellt, dass neue Kapitel
+						%immer auf der rechten (ungeraden)
+						%Seite beginnen
+,11pt % Schriftgröße
+,headsepline	%erzeugt eine Trennlinie in der
+						%Kopfzeile. Gibts natürlich auch
+						%als "footsepline"
+]{scrbook} 
+\usepackage{csquotes} % für Anführungszeichen
+  \usepackage{setspace}	
+  \usepackage{microtype}
+
+
+\ifdefined\HCode
+  % EPUB-/HTML-Modus: keine Formatierung Packages
+\else
+  % PDF-Modus: lade Formatierung & Co.
+  \usepackage{fontspec} % Schriftarten
+  \usepackage{ellipsis} % verbesserter Abstand bei 3 Punkten ...
+  \usepackage[osf]{libertine} 	% deaktivieren, falls Schriftart
+						% "Libertine" nicht installiert ist.
+						% Die Option "osf" (old school font)
+						% bewirkt, dass alle Ziffern als
+						% Minuskelziffern (Mediävalziffern)
+						% gesetzt werden.
+\fi
+\usepackage[ngerman]{babel} 
+\usepackage{lettrine} 	%Initiale 
+%\usepackage{xpatch} % for \xpatchcmd
+%\usepackage{txfonts} % Herzsymbol
+\usepackage[colorlinks=false,pdfborder={0 0 0},bookmarksnumbered]{hyperref}
+
+\begin{document}
+
+\hypersetup{
+	pdftitle={Latex Love Story - Wie schreibe ich ein Buch mit \LaTeX{}},
+	pdfauthor={von Inga Wolter \& Fabian Schumann},
+	pdfsubject={}
+}
+	
+
+\ifdefined\HCode
+        % EPUB-/HTML-Modus
+        \title{LaTeX Love Story}
+        \author{Inga Wolter \& Fabian Schumann}
+        \date{2025}
+        \maketitle
+\else
+        \begin{titlepage}
+                % PDF-Modus:
+                \subject{}
+                \title{\Huge \textsc{LaTeX Love Story}}
+                \subtitle{Wie schreibe ich ein Buch mit \LaTeX{}}
+                \author{von Inga Wolter \& Fabian Schumann}
+                \date{2025}
+        \end{titlepage}
+        \maketitle
+\fi
+\onehalfspacing % 1,5-facher Zeilenabstand
+
+\frontmatter % Gliederungsoption bei Dokumentklasse Book für alles, das vor dem Haupttext kommt
+
+\tableofcontents
+
+\mainmatter % Gliederungsmöglichkeit bei Dokumentklasse Book für den Hauptteil
+
+\input{kapitel/Einleitung.tex}
+\input{kapitel/Installation.tex}
+
+%\backmatter
+
+\end{document}%%

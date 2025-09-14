@@ -1,0 +1,187 @@
+\chapter{Installation}
+
+\section{Installation unter Windows}
+\subsection{Vorbereitung}
+\begin{itemize}
+    \item Stelle sicher, dass du über Administratorrechte verfügst.
+    \item Schließe alle \TeX-bezogenen Programme, falls bereits eine ältere Version installiert ist.
+\end{itemize}
+
+\subsection{Herunterladen von MiK\TeX}
+Das Installationspaket unter Windows heisst \enquote{MiK\TeX}. Es wird gern genutzt, da es einfach zu installieren und zu verwenden ist.
+\begin{enumerate}
+    \item Rufe \mbox{\url{https://miktex.org/download}} im Browser auf.
+    \item Wähle den Installer für Windows und klicke auf \enquote{Download}.
+    \item Speichere die Datei (z.\,B.\ \texttt{MiKTeX 24.1 x64.exe}) in einem Verzeichnis deiner Wahl.
+\end{enumerate}
+
+\subsection{Installation von MiK\TeX}
+\begin{enumerate}
+    \item Navigiere im Windows-Explorer zu dem Ordner, in dem du den Installer gespeichert hast.
+    \item Doppelklicke auf den Dateinamen \texttt{MiKTeX 24.1 x64.exe}, um die Installation zu starten.
+    \item Im Setup-Assistenten wählst du:
+    \begin{itemize}
+        \item \enquote{Install MiK\TeX}
+        \item \enquote{I accept the MiK\TeX copying conditions} $\rightarrow$ \enquote{Next}
+        \item \enquote{Install for: Only for me} oder \enquote{All users} je nach Bedarf.
+        \item Lege das Installationsverzeichnis fest oder verwende den Standardpfad.
+        \item Klicke auf \enquote{Next} und warte, bis die Installation abgeschlossen ist.
+    \end{itemize}
+    \item Nach Abschluss klickst du auf \enquote{Close}. MiK\TeX ist nun installiert.
+\end{enumerate}
+
+\subsection{Paketverwaltung und Update}
+\begin{itemize}
+    \item \enquote{MiK\TeX Console} öffnen (über das Startmenü).
+    \item Unter \enquote{Updates} klickst du auf \enquote{Check for updates}, um verfügbare Updates für die vorinstallierten Pakete herunterzuladen und zu installieren.
+    \item Stelle sicher, dass die Option \enquote{Always install missing packages on-the-fly} aktiviert ist.
+\end{itemize}
+
+\subsection{Test der Installation}
+\begin{enumerate}
+    \item Öffne die Eingabeaufforderung (cmd.exe).
+    \item Gib \texttt{pdflatex --version} ein und bestätige mit Enter.
+    \item Du solltest eine Ausgabe mit der Version von \TeX Live sehen, z.\,B. \enquote{MiK\TeX 24.1 (64-bit)}.
+\end{enumerate}
+
+\section{Installation unter macOS}
+\subsection{Vorbereitung}
+\begin{itemize}
+    \item Viele macOS-Nutzer verwenden \emph{Mac\TeX}, eine speziell für macOS angepasste TeX Live-Distribution.
+    \item Stelle sicher, dass du macOS Catalina (10.15) oder neuer verwendest.
+    \item Schließe alle \TeX-bezogenen Programme, falls bereits eine ältere Version installiert ist.
+\end{itemize}
+
+\subsection{Herunterladen von Mac\TeX}
+\begin{enumerate}
+    \item Rufe \mbox{\url{https://tug.org/mactex/}} auf.
+    \item Klicke auf \enquote{MacTeX Download} und wähle die aktuelle \texttt{.pkg}-Datei.
+    \item Optional: Wenn du wenig Speicherplatz hast, lade \enquote{BasicTeX} 
+    
+    (\mbox{\url{https://tug.org/mactex/morepackages.html}}) herunter.
+\end{enumerate}
+
+\subsection{Installation von Mac\TeX}
+\begin{enumerate}
+    \item Öffne die heruntergeladene \texttt{MacTeX.pkg}-Datei per Doppelklick.
+    \item Folge dem Installationsassistenten:
+    \begin{itemize}
+        \item \enquote{Fortfahren}, Lizenzbedingungen akzeptieren
+        \item Zielvolume wählen, \enquote{Installieren}
+        \item Passwort eingeben zur Bestätigung
+    \end{itemize}
+    \item Erfolgsnachricht: \enquote{The installation was successful.} → \enquote{Schließen}
+\end{enumerate}
+
+\subsection{Umgebungsvariablen}
+\begin{itemize}
+    \item Pfad: \texttt{/Library/TeX/texbin} (\texttt{echo \$PATH})
+    \item Wenn nicht vorhanden, füge folgendes ein:
+    \begin{verbatim}
+export PATH="/Library/TeX/texbin:$PATH"
+    \end{verbatim}
+    \item Dann:
+    \begin{verbatim}
+source ~/.bash_profile   # oder ~/.zshrc
+    \end{verbatim}
+\end{itemize}
+
+\subsection{Paketverwaltung und Update}
+\begin{itemize}
+    \item Terminal öffnen:
+    \begin{verbatim}
+sudo tlmgr update --self --all
+    \end{verbatim}
+    \item Weitere Pakete mit:
+    \begin{verbatim}
+sudo tlmgr install <Paketname>
+    \end{verbatim}
+\end{itemize}
+
+\subsection{Test der Installation}
+\begin{enumerate}
+    \item Terminal öffnen:
+    \begin{verbatim}
+pdflatex --version
+    \end{verbatim}
+    \item Testdatei wie oben erstellen und kompilieren:
+    \begin{verbatim}
+pdflatex test.tex
+    \end{verbatim}
+\end{enumerate}
+
+\section{Installation unter Linux}
+
+Die Installation ist über einen Paketmanager oder direkt von TeX Live möglich. 
+Im folgenden wird die Installation für Debian / Ubuntu beschrieben. 
+Falls Unterstützung für ein anderes Derivat erforderlich ist, hilft mit Sicherheit unsere GPT gern weiter. % TODO Link einfügen
+
+\subsubsection{Debian / Ubuntu}
+\begin{enumerate}
+    \item Terminal öffnen:
+    \begin{verbatim}
+sudo apt update
+sudo apt install texlive
+sudo apt install texlive-latex-extra texlive-fonts-recommended texlive-lang-german
+sudo apt install texlive-full
+    \end{verbatim}
+\end{enumerate}
+
+\subsubsection{Fedora / CentOS / RHEL}
+\begin{verbatim}
+sudo dnf install texlive-scheme-full
+sudo dnf install texlive-scheme-basic
+\end{verbatim}
+
+\subsubsection{Arch Linux / Manjaro}
+\begin{verbatim}
+sudo pacman -S texlive-most
+sudo pacman -S texlive-core
+\end{verbatim}
+
+\subsection{Direktinstaallation TeX Live}
+\begin{itemize}
+    \item Rufe \mbox{\url{https://www.tug.org/texlive/acquire-netinstall.html}} auf.
+\end{itemize}
+\begin{verbatim}
+tar -xvzf install-tl-unx.tar.gz
+cd install-tl-<Datum>
+sudo ./install-tl
+\end{verbatim}
+
+\subsubsection{Eintragen in den PATH}
+\begin{itemize}
+    \item Pfad: \texttt{/usr/local/texlive/20XX/bin/x86\_64-linux}
+    \item In \texttt{.bash\_profile} oder \texttt{.zshrc} einfügen:
+    \begin{verbatim}
+export PATH="/usr/local/texlive/20XX/bin/x86_64-linux:$PATH"
+    \end{verbatim}
+    \item Dann:
+    \begin{verbatim}
+source ~/.bash_profile   # oder ~/.zshrc
+    \end{verbatim}
+\end{itemize}
+
+\subsection{Test der Installation}
+\begin{enumerate}
+    \item Terminal öffnen:
+    \begin{verbatim}
+pdflatex --version
+    \end{verbatim}
+    \item Testdatei wie zuvor kompilieren:
+    \begin{verbatim}
+pdflatex test.tex
+    \end{verbatim}
+\end{enumerate}
+
+\section{Fehlerbehebung und Tipps}
+\subsection{Pfadprobleme}
+\begin{itemize}
+    \item \texttt{which pdflatex} zur Pfadkontrolle verwenden
+    \item Terminal nach PATH-Anpassung neu starten
+\end{itemize}
+
+\subsection{Speicherplatz}
+\begin{itemize}
+    \item Basisinstallation und dann Pakete bei Bedarf mit \texttt{tlmgr} oder MiK\TeX Console
+\end{itemize}

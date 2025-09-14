@@ -1,0 +1,46 @@
+name: Build LaTeX (LuaLaTeX) and deploy PDF to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Build with xu-cheng/latex-action (LuaLaTeX)
+      uses: xu-cheng/latex-action@v2
+      with:
+        root_file: Buch.tex
+        compiler: lualatex
+
+    - name: Prepare output folder
+      run: |
+        mkdir -p output
+        pdf=$(ls -1 *.pdf 2>/dev/null | head -n1 || true)
+        if [ -z "$pdf" ]; then
+          echo "No PDF found. Build probably failed."
+          ls -la
+          exit 1
+        fi
+        cp "$pdf" output/
+
+    - name: Upload PDF as artifact (for easy testing)
+      uses: actions/upload-artifact@v4
+      with:
+        name: built-pdf
+        path: output/*.pdf
+
+    - name: Deploy to GitHub Pages (gh-pages branch)
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./output
