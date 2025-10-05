@@ -19,7 +19,7 @@ jobs:
     - name: Build with xu-cheng/latex-action (LuaLaTeX)
       uses: xu-cheng/latex-action@v2
       with:
-        root_file: Buch.tex
+        root_file: Buch-Vorlage.tex
         compiler: lualatex
 
     - name: Prepare output folder
@@ -31,9 +31,9 @@ jobs:
           ls -la
           exit 1
         fi
-        cp "$pdf" output/Buch.pdf
+        cp "$pdf" output/Buch-Vorlage.pdf
 
-    - name: Upload PDF as artifact (for easy testing)
+    - name: Upload PDF as artifact
       uses: actions/upload-artifact@v4
       with:
         name: built-pdf
